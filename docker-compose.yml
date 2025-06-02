@@ -1,0 +1,14 @@
+services:
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+      - ./start.sh:/start.sh  # Mount the script
+    entrypoint: ["/bin/sh", "/start.sh"]
+
+volumes:
+  ollama:
